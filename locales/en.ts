@@ -43,6 +43,9 @@ export const en = {
     contact: "Contact",
     rights: "All rights reserved."
   },
+  cta: {
+    requestQuote: "Request Quote"
+  },
   forms: {
     contact: {
     eyebrow: "Send a brief",

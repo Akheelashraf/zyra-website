@@ -43,6 +43,9 @@ export const ar = {
     contact: "التواصل",
     rights: "جميع الحقوق محفوظة."
   },
+  cta: {
+    requestQuote: "طلب عرض سعر"
+  },
   forms: {
     contact: {
     eyebrow: "ارسل نبذة عن مشروعك",
