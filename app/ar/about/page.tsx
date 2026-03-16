@@ -36,16 +36,11 @@ export default function AboutPage() {
           <WhyTrustZyraSection />
         </RevealOnScroll>
         <InnerPageCinematicSection
-          headline="Structure creates confidence."
-          supportingText="Clients trust projects more when execution is visible, communication is disciplined, and delivery respects both design intent and business reality."
           imageSrc="/images/about-cinematic.jpg"
           proxyVariant="about"
+          cinematicKey="about"
         />
-        <InnerPageStatementSection>
-          Trust is built through
-          <br />
-          how the work is managed.
-        </InnerPageStatementSection>
+        <InnerPageStatementSection statementKey="about" />
         <RevealOnScroll>
           <AboutCTASection />
         </RevealOnScroll>

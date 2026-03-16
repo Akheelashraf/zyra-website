@@ -3,8 +3,10 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { usePathname } from "next/navigation";
 import { MaxWidthWrapper } from "../layout/MaxWidthWrapper";
 import { CinematicProxyBackground } from "@/components/proxy-visuals/CinematicProxyBackground";
+import { getDictionary, getLocaleFromPath } from "@/lib/locale";
 
 const CINEMATIC_IMAGE_SRC = "/images/home-cinematic.jpg";
 
@@ -12,6 +14,10 @@ export function CinematicSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
   const [useFallback, setUseFallback] = useState(false);
+  const pathname = usePathname();
+  const locale = getLocaleFromPath(pathname);
+  const dict = getDictionary(locale);
+  const c = dict.home.cinematic;
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -51,7 +57,7 @@ export function CinematicSection() {
       </motion.div>
 
       <div className="relative z-10 flex min-h-[80vh] flex-col items-center justify-center px-6 py-24 sm:py-32">
-        <MaxWidthWrapper className="flex flex-col items-center text-center">
+        <MaxWidthWrapper className={`flex flex-col items-center text-center ${locale === "ar" ? "text-right" : ""}`} dir={locale === "ar" ? "rtl" : "ltr"}>
           <motion.h2
             className="cinematic-heading text-4xl font-semibold tracking-tight text-white md:text-5xl lg:text-6xl"
             initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 40 }}
@@ -59,7 +65,7 @@ export function CinematicSection() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: reduceMotion ? 0 : 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            Structure in every stage.
+            {c.heading}
           </motion.h2>
           <motion.p
             className="cinematic-supporting mt-6 max-w-2xl text-base text-white/80 md:text-lg"
@@ -68,9 +74,7 @@ export function CinematicSection() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: reduceMotion ? 0 : 0.8, delay: reduceMotion ? 0 : 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            From concept coordination to final handover, Zyra approaches commercial
-            interiors through disciplined planning, controlled execution, and
-            design-aware delivery.
+            {c.supporting}
           </motion.p>
         </MaxWidthWrapper>
       </div>

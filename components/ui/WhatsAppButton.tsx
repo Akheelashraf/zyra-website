@@ -1,13 +1,17 @@
 "use client";
 
+import { useAudio } from "@/components/audio/AudioProvider";
+
 const WHATSAPP_URL = "https://wa.me/966566325017";
 
 export function WhatsAppButton() {
+  const { playClick } = useAudio();
   return (
     <a
       href={WHATSAPP_URL}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={playClick}
       className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-zyra-blue text-white shadow-lg shadow-slate-900/15 transition hover:bg-zyra-blue/90 hover:shadow-xl hover:shadow-slate-900/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zyra-blue focus-visible:ring-offset-2 focus-visible:ring-offset-white"
       aria-label="Contact Zyra Builds on WhatsApp"
     >

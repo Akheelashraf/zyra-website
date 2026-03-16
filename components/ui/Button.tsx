@@ -3,6 +3,7 @@
 import Link from "next/link";
 import type { MouseEvent } from "react";
 import { ButtonHTMLAttributes, ReactNode, useEffect, useState } from "react";
+import { useAudio } from "@/components/audio/AudioProvider";
 
 type ButtonVariant = "primary" | "ghost";
 type ButtonSize = "sm" | "md";
@@ -37,10 +38,17 @@ export function Button({
   href,
   onMouseMove,
   onMouseLeave,
+  onClick,
   ...props
 }: ButtonProps) {
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [enabled, setEnabled] = useState(false);
+  const { playClick } = useAudio();
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
+    playClick();
+    onClick?.(e as React.MouseEvent<HTMLButtonElement>);
+  };
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -117,6 +125,7 @@ export function Button({
         style={magneticStyle}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
+        onClick={handleClick}
       >
         {children}
       </Link>
@@ -129,6 +138,7 @@ export function Button({
       style={magneticStyle}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
       {...props}
     >
       {children}

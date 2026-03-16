@@ -1,16 +1,21 @@
 "use client";
 
-import { ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { getDictionary, getLocaleFromPath } from "@/lib/locale";
 
 type InnerPageStatementSectionProps = {
-  children: ReactNode;
+  statementKey: "services" | "about" | "projects" | "contact";
 };
 
 export function InnerPageStatementSection({
-  children
+  statementKey
 }: InnerPageStatementSectionProps) {
   const reduceMotion = useReducedMotion();
+  const pathname = usePathname();
+  const locale = getLocaleFromPath(pathname);
+  const dict = getDictionary(locale);
+  const s = dict.statements[statementKey];
 
   return (
     <section className="bg-white py-24 sm:py-32 lg:py-40">
@@ -25,7 +30,9 @@ export function InnerPageStatementSection({
             ease: [0.25, 0.46, 0.45, 0.94]
           }}
         >
-          {children}
+          {s.line1}
+          <br />
+          {s.line2}
         </motion.h2>
       </div>
     </section>

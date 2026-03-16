@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { HeroProxyVisual } from "@/components/proxy-visuals/HeroProxyVisual";
 
-const HERO_IMAGE_SRC = "/images/home-hero.jpg";
+const HERO_IMAGE_SRC = "/images/hero-fallback.jpg";
+const HERO_VIDEO_SRC = "/video/hero-video.mp4";
 
 type HeroCinematicImageProps = {
   /** When true, fills parent container (absolute inset-0) for immersive stage layout */
@@ -15,6 +16,7 @@ type HeroCinematicImageProps = {
 export function HeroCinematicImage({ fillStage = false }: HeroCinematicImageProps) {
   const reduceMotion = useReducedMotion();
   const [useFallback, setUseFallback] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
 
   const { scrollYProgress } = useScroll();
   const scale = useTransform(scrollYProgress, [0, 0.22, 0.4], [1.06, 1.02, 1]);
@@ -27,9 +29,21 @@ export function HeroCinematicImage({ fillStage = false }: HeroCinematicImageProp
     ? "absolute inset-0 h-full w-full overflow-hidden bg-slate-100/50"
     : "relative aspect-video w-full max-w-[640px] overflow-hidden rounded-[28px] border border-slate-100/90 bg-slate-50/30 shadow-hero-stage ring-1 ring-slate-200/80 xl:max-w-[680px] [box-shadow:0_32px_64px_rgba(0,0,0,0.08),0_8px_24px_rgba(0,0,0,0.04),inset_0_1px_0_rgba(255,255,255,0.5)]";
 
+  useEffect(() => {
+    if (videoReady) return;
+    const t = setTimeout(() => {
+      setVideoReady(true);
+    }, 3500);
+    return () => clearTimeout(t);
+  }, [videoReady]);
+
+  const handleVideoReady = () => {
+    setVideoReady(true);
+  };
+
   return (
     <div className={wrapperClass}>
-      {/* Layer 1 — background image */}
+      {/* Layer 1 — background image (also acts as video poster/fallback) */}
       <motion.div
         className={`absolute inset-0 ${roundedClass}`}
         style={{
@@ -51,6 +65,30 @@ export function HeroCinematicImage({ fillStage = false }: HeroCinematicImageProp
           />
         )}
       </motion.div>
+      {/* Layer 1.5 — cinematic hero video with smooth fade-in */}
+      {!useFallback && (
+        <motion.video
+          className={`absolute inset-0 h-full w-full ${roundedClass} object-cover object-[center_42%] sm:object-[center_40%] md:object-[center_38%]`}
+          src={HERO_VIDEO_SRC}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={HERO_IMAGE_SRC}
+          onLoadedMetadata={handleVideoReady}
+          onLoadedData={handleVideoReady}
+          onCanPlay={handleVideoReady}
+          onCanPlayThrough={handleVideoReady}
+          onError={() => setUseFallback(true)}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: videoReady ? 1 : 0 }}
+          transition={{
+            duration: reduceMotion ? 0 : 1.1,
+            ease: [0.25, 0.46, 0.45, 0.94]
+          }}
+        />
+      )}
       {/* Layer 2 — subtle gradient lighting (top soft light) */}
       {!reduceMotion && (
         <motion.div

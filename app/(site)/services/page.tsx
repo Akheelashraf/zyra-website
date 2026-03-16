@@ -30,10 +30,9 @@ export default function ServicesPage() {
           <DeliveryApproachSection />
         </RevealOnScroll>
         <InnerPageCinematicSection
-          headline="Execution begins with clarity."
-          supportingText="Commercial interiors perform better when scope, coordination, and delivery are structured before work begins on site."
           imageSrc="/images/services-cinematic.jpg"
           proxyVariant="services"
+          cinematicKey="services"
         />
         <RevealOnScroll>
           <ScopeExamplesSection />
@@ -41,11 +40,7 @@ export default function ServicesPage() {
         <RevealOnScroll>
           <WhyClientsChooseSection />
         </RevealOnScroll>
-        <InnerPageStatementSection>
-          Built for projects that need
-          <br />
-          more than finishing work.
-        </InnerPageStatementSection>
+        <InnerPageStatementSection statementKey="services" />
         <RevealOnScroll>
           <ServicesCTASection />
         </RevealOnScroll>

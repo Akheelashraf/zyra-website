@@ -40,16 +40,11 @@ export default function ContactPage() {
           <ContactFormSection />
         </RevealOnScroll>
         <InnerPageCinematicSection
-          headline="A clear project starts with a clear first conversation."
-          supportingText="The more structured the first discussion, the easier it is to define scope, priorities, and the right next step."
           imageSrc="/images/contact-cinematic.jpg"
           proxyVariant="contact"
+          cinematicKey="contact"
         />
-        <InnerPageStatementSection>
-          Clarity at the start
-          <br />
-          improves everything after.
-        </InnerPageStatementSection>
+        <InnerPageStatementSection statementKey="contact" />
         <RevealOnScroll>
           <ContactCTASection />
         </RevealOnScroll>

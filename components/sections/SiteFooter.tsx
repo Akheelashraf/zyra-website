@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MaxWidthWrapper } from "../layout/MaxWidthWrapper";
 import { usePathname } from "next/navigation";
+import { useAudio } from "@/components/audio/AudioProvider";
 import { getDictionary, getLocaleFromPath } from "@/lib/locale";
 
 const LOGO_SRC = "/branding/zyra%20logo%20blue%2001%20Artboard%201.svg";
@@ -22,6 +23,7 @@ export function SiteFooter() {
   const locale = getLocaleFromPath(pathname);
   const dict = getDictionary(locale);
   const isArabic = locale === "ar";
+  const { playClick } = useAudio();
 
   const getLocalizedHref = (href: string) => {
     if (!isArabic) return href;
@@ -35,6 +37,7 @@ export function SiteFooter() {
         <div className="space-y-3">
           <Link
             href={getLocalizedHref("/")}
+            onClick={playClick}
             className="inline-flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded transition-opacity duration-200 hover:opacity-90"
           >
             <Image
@@ -63,6 +66,7 @@ export function SiteFooter() {
                 <li key={link.href}>
                   <Link
                     href={getLocalizedHref(link.href)}
+                    onClick={playClick}
                     className="rounded-sm transition-colors duration-200 ease-out hover:text-slate-900 hover:underline hover:underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
                   >
                     {dict.header.nav[link.key]}
@@ -79,6 +83,7 @@ export function SiteFooter() {
               <li>
                 <a
                   href="mailto:connect@zyrabuilds.com"
+                  onClick={playClick}
                   className="rounded-sm transition-colors duration-200 ease-out hover:text-slate-900 hover:underline hover:underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
                 >
                   connect@zyrabuilds.com
@@ -87,9 +92,10 @@ export function SiteFooter() {
               <li>
                 <a
                   href="tel:+966566325017"
+                  onClick={playClick}
                   className="rounded-sm transition-colors duration-200 ease-out hover:text-slate-900 hover:underline hover:underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
                 >
-                  +966 566 32 5017
+                  <bdi dir="ltr">+966 566 32 5017</bdi>
                 </a>
               </li>
             </ul>

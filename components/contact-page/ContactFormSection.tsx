@@ -12,16 +12,15 @@ export function ContactFormSection() {
   const pathname = usePathname();
   const locale = getLocaleFromPath(pathname);
   const dict = getDictionary(locale);
-  const t = dict.contactForm;
+  const t = dict.forms.contact;
   const isArabic = locale === "ar";
 
   return (
     <section className="bg-slate-50/60 py-16 sm:py-20 lg:py-24">
       <MaxWidthWrapper>
         <div
-          className={`max-w-2xl space-y-3 ${
-            isArabic ? "text-right" : "text-left"
-          }`}
+          className={`max-w-2xl space-y-3 ${isArabic ? "text-right" : "text-left"}`}
+          dir={isArabic ? "rtl" : "ltr"}
         >
           <p className="text-[11px] uppercase tracking-[0.28em] text-slate-400">
             {t.eyebrow}

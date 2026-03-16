@@ -3,6 +3,9 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { useAudio } from "@/components/audio/AudioProvider";
+import { getDictionary, getLocaleFromPath } from "@/lib/locale";
 
 const POSTER_SRC = "/images/home-hero.jpg";
 /** Add your intro video to public/videos/inside-zyra.mp4 and it will play on click */
@@ -14,8 +17,14 @@ export function InsideZyraVideoSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const reduceMotion = useReducedMotion();
   const [isPlaying, setIsPlaying] = useState(false);
+  const pathname = usePathname();
+  const locale = getLocaleFromPath(pathname);
+  const dict = getDictionary(locale);
+  const v = dict.home.insideZyra;
+  const { playClick } = useAudio();
 
   const handlePlay = () => {
+    playClick();
     const video = videoRef.current;
     if (video) {
       video.play().then(() => setIsPlaying(true)).catch(() => {});
@@ -33,12 +42,12 @@ export function InsideZyraVideoSection() {
         viewport={{ once: true, amount: 0.15 }}
         transition={{ duration: reduceMotion ? 0 : 0.7, ease }}
       >
-        <div className="mb-12 text-center sm:mb-14">
+        <div className="mb-12 text-center sm:mb-14" dir={locale === "ar" ? "rtl" : "ltr"}>
           <h2 className="text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl lg:text-[2.75rem]">
-            Inside Zyra
+            {v.title}
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-base text-slate-500 md:text-lg md:leading-relaxed">
-            A look inside how we design and execute commercial interiors.
+            {v.intro}
           </p>
         </div>
 
@@ -80,7 +89,7 @@ export function InsideZyraVideoSection() {
               type="button"
               onClick={handlePlay}
               className="absolute inset-0 z-10 flex items-center justify-center bg-black/10 transition-colors duration-200 hover:bg-black/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-zyra-blue focus-visible:ring-offset-2 focus-visible:ring-offset-white"
-              aria-label="Play video"
+              aria-label={v.playVideo}
             >
               <span className="flex h-20 w-20 items-center justify-center rounded-full bg-white/95 shadow-[0_20px_60px_rgba(0,0,0,0.25)] ring-1 ring-slate-200/80 transition-transform duration-200 group-hover:scale-105 motion-reduce:group-hover:scale-100">
                 <svg

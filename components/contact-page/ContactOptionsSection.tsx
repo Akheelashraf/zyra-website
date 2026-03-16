@@ -1,4 +1,7 @@
+"use client";
+
 import { MaxWidthWrapper } from "../layout/MaxWidthWrapper";
+import { useAudio } from "@/components/audio/AudioProvider";
 
 const contactOptions = [
   {
@@ -21,6 +24,7 @@ const contactOptions = [
 ];
 
 export function ContactOptionsSection() {
+  const { playClick } = useAudio();
   return (
     <section className="bg-white py-16 sm:py-20 lg:py-24">
       <MaxWidthWrapper>
@@ -49,9 +53,14 @@ export function ContactOptionsSection() {
               {"href" in option && option.href ? (
                 <a
                   href={option.href}
+                  onClick={playClick}
                   className="text-base md:text-lg font-medium text-slate-900 transition hover:text-zyra-blue hover:underline hover:underline-offset-2"
                 >
-                  {option.value}
+                  {typeof option.href === "string" && option.href.startsWith("tel:") ? (
+                    <bdi dir="ltr">{option.value}</bdi>
+                  ) : (
+                    option.value
+                  )}
                 </a>
               ) : (
                 <p className="text-base md:text-lg font-medium text-slate-900">

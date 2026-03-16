@@ -1,46 +1,37 @@
-import { MaxWidthWrapper } from "../layout/MaxWidthWrapper";
+"use client";
 
-const reasons = [
-  {
-    title: "Clear Scope Control",
-    body: "Defined packages, drawings and responsibilities so decisions stay anchored and change is managed."
-  },
-  {
-    title: "Weekly Visibility",
-    body: "Structured updates that give you a clear view of progress, risks and upcoming decisions."
-  },
-  {
-    title: "Design-Aware Execution",
-    body: "Respecting design intent while resolving details on site, so the finished space matches what was imagined."
-  },
-  {
-    title: "Commercial Focus",
-    body: "Built specifically for growing businesses that need their space to support teams, clients and operations."
-  }
-];
+import { usePathname } from "next/navigation";
+import { MaxWidthWrapper } from "../layout/MaxWidthWrapper";
+import { getDictionary, getLocaleFromPath } from "@/lib/locale";
 
 export function WhyZyraSection() {
+  const pathname = usePathname();
+  const locale = getLocaleFromPath(pathname);
+  const dict = getDictionary(locale);
+  const isArabic = locale === "ar";
+  const w = dict.home.whyZyra;
+
   return (
     <section className="bg-slate-50/60 py-20 sm:py-24 lg:py-28">
       <MaxWidthWrapper>
-        <div className="max-w-3xl space-y-3">
+        <div className={`max-w-3xl space-y-3 ${isArabic ? "text-right" : ""}`} dir={isArabic ? "rtl" : "ltr"}>
           <p className="text-[11px] uppercase tracking-[0.28em] text-slate-400">
-            Why Zyra
+            {w.eyebrow}
           </p>
           <h2 className="text-2xl md:text-3xl lg:text-[2.1rem] font-semibold tracking-tight text-slate-900">
-            Built for businesses that value structure.
+            {w.title}
           </h2>
           <p className="text-sm md:text-base text-slate-500 max-w-2xl">
-            Zyra is not a general contractor. It is a focused interior execution partner
-            for commercial spaces where structure and coordination matter.
+            {w.intro}
           </p>
         </div>
 
         <div className="mt-12 grid gap-8 md:grid-cols-2">
-          {reasons.map((reason) => (
+          {w.reasons.map((reason, idx) => (
             <div
-              key={reason.title}
-              className="space-y-3.5 rounded-3xl border border-slate-100/90 bg-white p-6 sm:p-7 lg:p-8 shadow-sm transition-all duration-200 hover:border-slate-200 hover:shadow-md"
+              key={idx}
+              className={`space-y-3.5 rounded-3xl border border-slate-100/90 bg-white p-6 sm:p-7 lg:p-8 shadow-sm transition-all duration-200 hover:border-slate-200 hover:shadow-md ${isArabic ? "text-right" : ""}`}
+              dir={isArabic ? "rtl" : "ltr"}
             >
               <h3 className="text-base md:text-lg font-medium tracking-tight text-slate-900">
                 {reason.title}
@@ -55,4 +46,3 @@ export function WhyZyraSection() {
     </section>
   );
 }
-

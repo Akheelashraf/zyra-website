@@ -1,9 +1,15 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { getDictionary, getLocaleFromPath } from "@/lib/locale";
 
 export function StatementSection() {
   const reduceMotion = useReducedMotion();
+  const pathname = usePathname();
+  const locale = getLocaleFromPath(pathname);
+  const dict = getDictionary(locale);
+  const s = dict.statements.home;
 
   return (
     <section className="bg-white py-24 sm:py-32 lg:py-40">
@@ -15,9 +21,9 @@ export function StatementSection() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: reduceMotion ? 0 : 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          Commercial interiors
+          {s.line1}
           <br />
-          built with clarity.
+          {s.line2}
         </motion.h2>
       </div>
     </section>

@@ -2,27 +2,19 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { usePathname } from "next/navigation";
 import { MaxWidthWrapper } from "@/components/layout/MaxWidthWrapper";
 import { ProcessStageVisual } from "./ProcessStageVisual";
-
-const PHASES = [
-  {
-    label: "IDEA",
-    text: "Every project begins with a clear brief, spatial intent, and the first decisions that shape how the space should work."
-  },
-  {
-    label: "DESIGN",
-    text: "Scope, coordination, and design intent are aligned before execution begins, reducing ambiguity and improving control."
-  },
-  {
-    label: "BUILT SPACE",
-    text: "The final result is a commercial interior delivered with control, clarity, and attention to how the business will use the space."
-  }
-] as const;
+import { getDictionary, getLocaleFromPath } from "@/lib/locale";
 
 export function StructuredProcessScrollSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
+  const pathname = usePathname();
+  const locale = getLocaleFromPath(pathname);
+  const dict = getDictionary(locale);
+  const p = dict.home.processScroll;
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"]
@@ -51,19 +43,17 @@ export function StructuredProcessScrollSection() {
     >
       <div
         className="sticky top-0 flex min-h-screen flex-col items-center justify-center py-20 sm:py-24 lg:py-32"
-        aria-label="Structured process: Idea, Design, Built Space"
+        aria-label={p.ariaLabel}
       >
-        <MaxWidthWrapper className="flex w-full flex-col items-center">
-          {/* Section introduction */}
+        <MaxWidthWrapper className={`flex w-full flex-col items-center ${locale === "ar" ? "text-right" : ""}`} dir={locale === "ar" ? "rtl" : "ltr"}>
           <div className="max-w-3xl space-y-5 text-center">
             <h2 className="text-2xl font-semibold leading-tight tracking-tight text-slate-900 md:text-3xl lg:text-[2.1rem]">
-              Structured delivery,
+              {p.titleLine1}
               <br />
-              stage by stage.
+              {p.titleLine2}
             </h2>
             <p className="mx-auto max-w-2xl text-sm leading-relaxed text-slate-500 md:text-base">
-              From concept to completed space, Zyra executes commercial interiors
-              through a disciplined sequence of decisions and coordination.
+              {p.intro}
             </p>
           </div>
 
@@ -80,12 +70,10 @@ export function StructuredProcessScrollSection() {
             {reduceMotion ? (
               <div className="space-y-6 text-center">
                 <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-zyra-blue">
-                  IDEA → DESIGN → BUILT SPACE
+                  {p.reducedMotionLabel}
                 </p>
                 <p className="text-sm leading-relaxed text-slate-500 md:text-base">
-                  From brief and spatial intent, through coordinated design and
-                  scope alignment, to a commercial interior delivered with
-                  control and clarity.
+                  {p.reducedMotionText}
                 </p>
               </div>
             ) : (
@@ -95,10 +83,10 @@ export function StructuredProcessScrollSection() {
                   style={{ opacity: ideaTextOpacity }}
                 >
                   <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-500">
-                    {PHASES[0].label}
+                    {p.phases[0].label}
                   </p>
                   <p className="mt-3 text-sm leading-relaxed text-slate-500 md:text-base">
-                    {PHASES[0].text}
+                    {p.phases[0].text}
                   </p>
                 </motion.div>
                 <motion.div
@@ -106,10 +94,10 @@ export function StructuredProcessScrollSection() {
                   style={{ opacity: designTextOpacity }}
                 >
                   <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-zyra-blue">
-                    {PHASES[1].label}
+                    {p.phases[1].label}
                   </p>
                   <p className="mt-3 text-sm leading-relaxed text-slate-500 md:text-base">
-                    {PHASES[1].text}
+                    {p.phases[1].text}
                   </p>
                 </motion.div>
                 <motion.div
@@ -117,10 +105,10 @@ export function StructuredProcessScrollSection() {
                   style={{ opacity: builtTextOpacity }}
                 >
                   <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-700">
-                    {PHASES[2].label}
+                    {p.phases[2].label}
                   </p>
                   <p className="mt-3 text-sm leading-relaxed text-slate-500 md:text-base">
-                    {PHASES[2].text}
+                    {p.phases[2].text}
                   </p>
                 </motion.div>
               </>

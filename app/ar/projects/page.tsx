@@ -34,16 +34,11 @@ export default function ProjectsPage() {
           <WhyWorkMattersSection />
         </RevealOnScroll>
         <InnerPageCinematicSection
-          headline="Execution shapes how the space is experienced."
-          supportingText="Zyra approaches each interior as a sequence of operational, spatial, and design decisions that need to work together."
           imageSrc="/images/projects-cinematic.jpg"
           proxyVariant="projects"
+          cinematicKey="projects"
         />
-        <InnerPageStatementSection>
-          Spaces should support
-          <br />
-          the business behind them.
-        </InnerPageStatementSection>
+        <InnerPageStatementSection statementKey="projects" />
         <RevealOnScroll>
           <ProjectsCTASection />
         </RevealOnScroll>

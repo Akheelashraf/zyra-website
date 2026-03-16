@@ -4,6 +4,7 @@ import "./globals.css";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { BrandedLoader } from "@/components/loading/BrandedLoader";
 import { PageTransition } from "@/components/layout/PageTransition";
+import { AudioProvider } from "@/components/audio/AudioProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,9 +29,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="font-sans">
-        <BrandedLoader />
-        <PageTransition>{children}</PageTransition>
-        <WhatsAppButton />
+        <AudioProvider>
+          <BrandedLoader />
+          <PageTransition>{children}</PageTransition>
+          <WhatsAppButton />
+        </AudioProvider>
       </body>
     </html>
   );
