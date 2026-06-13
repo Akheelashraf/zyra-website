@@ -6,8 +6,8 @@ import { useAudio } from "@/components/audio/AudioProvider";
 const contactOptions = [
   {
     label: "Email",
-    value: "connect@zyrabuilds.com",
-    href: "mailto:connect@zyrabuilds.com",
+    value: "info@zyrabuilds.com",
+    href: "mailto:info@zyrabuilds.com",
     note: "For project inquiries and general questions."
   },
   {

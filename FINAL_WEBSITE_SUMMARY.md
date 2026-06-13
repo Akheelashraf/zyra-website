@@ -62,7 +62,7 @@ All pages use the same shell: `SiteHeader`, `<main>`, `SiteFooter`, with `MaxWid
 ### 4. FOOTER
 
 - **Branding:** Same logo as header; tagline: “Structured commercial interior execution for growing businesses in Saudi Arabia.” Location: “Al Khobar / Dammam, Eastern Province, Saudi Arabia.”
-- **Contact:** Email `connect@zyrabuilds.com`, phone `+966 566 32 5017` (displayed with spaces; `tel:+966566325017`).
+- **Contact:** Email `info@zyrabuilds.com`, phone `+966 566 32 5017` (displayed with spaces; `tel:+966566325017`).
 - **Links:** Navigate: Services, Projects, About, Contact. All use `Link` to the same routes. Focus-visible rings and hover styles are applied for consistency with the header.
 
 ---
@@ -151,7 +151,7 @@ All image components use `onError` fallbacks to proxy visuals when files are mis
 ### 13. REAL BUSINESS INFORMATION
 
 - **Company name:** Zyra Builds.
-- **Email:** connect@zyrabuilds.com (mailto + display in footer and contact).
+- **Email:** info@zyrabuilds.com (mailto + display in footer and contact).
 - **Phone:** +966 566 32 5017 (tel link + display with spaces).
 - **Location:** Al Khobar / Dammam, Eastern Province, Saudi Arabia (footer, contact, map title).
 - **Positioning line:** “Structured commercial interior execution for growing businesses in Saudi Arabia.” (footer, hero subtext, metadata).

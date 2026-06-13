@@ -82,11 +82,11 @@ export function SiteFooter() {
             <ul className="space-y-1.5">
               <li>
                 <a
-                  href="mailto:connect@zyrabuilds.com"
+                  href="mailto:info@zyrabuilds.com"
                   onClick={playClick}
                   className="rounded-sm transition-colors duration-200 ease-out hover:text-slate-900 hover:underline hover:underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
                 >
-                  connect@zyrabuilds.com
+                  info@zyrabuilds.com
                 </a>
               </li>
               <li>

@@ -361,7 +361,7 @@ export const en = {
       title: "Choose the most direct way to reach Zyra.",
       intro: "Whether you prefer email, phone or a brief written outline, Zyra will respond with clarity on next steps.",
       items: [
-        { label: "Email", value: "connect@zyrabuilds.com", href: "mailto:connect@zyrabuilds.com", note: "For project inquiries and general questions." },
+        { label: "Email", value: "info@zyrabuilds.com", href: "mailto:info@zyrabuilds.com", note: "For project inquiries and general questions." },
         { label: "Phone", value: "+966 566 32 5017", href: "tel:+966566325017", note: "For direct conversation when timing matters." },
         { label: "Location", value: "Al Khobar / Dammam", note: "Eastern Province, Saudi Arabia. Serving commercial clients across the region." }
       ]

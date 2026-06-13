@@ -38,7 +38,7 @@ const dropdownContent: Record<
   ],
   "/contact": [
     { key: "startProject", href: "/contact" },
-    { key: "callEmail", href: "mailto:connect@zyrabuilds.com" },
+    { key: "callEmail", href: "mailto:info@zyrabuilds.com" },
     { key: "location", href: "/contact" }
   ]
 };
