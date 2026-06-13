@@ -431,6 +431,13 @@ export const en = {
       "Brief description of your project, location, timeline and any key requirements.",
     submit: "Send inquiry"
     }
+  },
+  notFound: {
+    title: "Page not found",
+    description:
+      "The page you are looking for may have moved or no longer exists. Return to the homepage or contact Zyra to start a project.",
+    home: "Back to homepage",
+    contact: "Contact Zyra"
   }
 };
 

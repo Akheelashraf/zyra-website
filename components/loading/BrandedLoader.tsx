@@ -53,8 +53,7 @@ export function BrandedLoader() {
             exit={{ opacity: 0 }}
             transition={{
               duration: reduceMotion ? 0.2 : 0.6,
-              ease: [0.25, 0.46, 0.45, 0.94],
-              exit: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }
+              ease: [0.25, 0.46, 0.45, 0.94]
             }}
           >
             {!reduceMotion && (

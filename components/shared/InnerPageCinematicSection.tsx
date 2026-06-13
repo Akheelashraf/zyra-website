@@ -3,24 +3,40 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { usePathname } from "next/navigation";
 import { MaxWidthWrapper } from "../layout/MaxWidthWrapper";
 import { CinematicProxyBackground } from "@/components/proxy-visuals/CinematicProxyBackground";
+import { getDictionary, getLocaleFromPath } from "@/lib/locale";
 
 type CinematicVariant = "services" | "projects" | "about" | "contact";
 
 type InnerPageCinematicSectionProps = {
-  headline: string;
-  supportingText: string;
+  cinematicKey: CinematicVariant;
   imageSrc: string;
   proxyVariant: CinematicVariant;
 };
 
+const pageKeyByCinematic: Record<
+  CinematicVariant,
+  "servicesPage" | "projectsPage" | "aboutPage" | "contactPage"
+> = {
+  services: "servicesPage",
+  projects: "projectsPage",
+  about: "aboutPage",
+  contact: "contactPage"
+};
+
 export function InnerPageCinematicSection({
-  headline,
-  supportingText,
+  cinematicKey,
   imageSrc,
   proxyVariant
 }: InnerPageCinematicSectionProps) {
+  const pathname = usePathname();
+  const locale = getLocaleFromPath(pathname);
+  const dict = getDictionary(locale);
+  const cinematic = dict[pageKeyByCinematic[cinematicKey]].cinematic;
+  const headline = cinematic.headline;
+  const supportingText = cinematic.supporting;
   const sectionRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
   const [useFallback, setUseFallback] = useState(false);

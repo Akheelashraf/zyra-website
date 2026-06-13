@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"
+
+# Required for Next.js App Router on Netlify.
+# Do NOT set a publish directory — the plugin handles output.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--legacy-peer-deps=false"
