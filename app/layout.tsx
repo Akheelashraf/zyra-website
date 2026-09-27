@@ -15,7 +15,14 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Zyra Builds | Commercial Interior Fit-Out in Saudi Arabia",
   description:
-    "Structured commercial interior execution for growing businesses in Saudi Arabia. Offices, restaurants, retail, clinics, showrooms, exhibition booths."
+    "Structured commercial interior execution for growing businesses in Saudi Arabia. Offices, restaurants, retail, clinics, showrooms, exhibition booths.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.png", type: "image/png", sizes: "32x32" }
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }]
+  }
 };
 
 export default function RootLayout({
