@@ -91,11 +91,11 @@ export function SiteFooter() {
               </li>
               <li>
                 <a
-                  href="tel:+966566325017"
+                  href="tel:+966531237978"
                   onClick={playClick}
                   className="rounded-sm transition-colors duration-200 ease-out hover:text-slate-900 hover:underline hover:underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
                 >
-                  <bdi dir="ltr">+966 566 32 5017</bdi>
+                  <bdi dir="ltr">+966 531237978</bdi>
                 </a>
               </li>
             </ul>

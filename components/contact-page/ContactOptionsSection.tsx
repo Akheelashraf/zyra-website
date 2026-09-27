@@ -12,8 +12,8 @@ const contactOptions = [
   },
   {
     label: "Phone",
-    value: "+966 566 32 5017",
-    href: "tel:+966566325017",
+    value: "+966 531237978",
+    href: "tel:+966531237978",
     note: "For direct conversation when timing matters."
   },
   {

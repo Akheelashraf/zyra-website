@@ -2,7 +2,7 @@
 
 import { useAudio } from "@/components/audio/AudioProvider";
 
-const WHATSAPP_URL = "https://wa.me/966566325017";
+const WHATSAPP_URL = "https://wa.me/966531237978";
 
 export function WhatsAppButton() {
   const { playClick } = useAudio();
